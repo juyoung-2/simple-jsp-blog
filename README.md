@@ -10,6 +10,7 @@ View(JSP), Controller(Servlet), Model(DAO / VO / MyBatis)을 분리하여 설계
 
 
 
+
 **주요 기능**
 - 회원가입 / 로그인 (AJAX)
 - 게시글 등록 / 수정 / 삭제 / 조회
