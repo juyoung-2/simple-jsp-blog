@@ -7,6 +7,7 @@
 
 Controller 중심의 MVC 패턴을 기반으로  
 View(JSP), Controller(Servlet), Model(DAO / VO / MyBatis)을 분리하여 설계되었습니다.
+<br>
 
 **주요 기능**
 - 회원가입 / 로그인 (AJAX)
