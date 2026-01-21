@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.joonzis.mybatis.mapper.user">
+	<select id="validate_id" parameterType="String" resultType="int" >
+		select count(*) from user_t where u_id = #{u_id}
+	</select>
+	<insert id="insert_user" parameterType="org.joonzis.vo.UVO" >
+		INSERT INTO user_t VALUES(
+		user_seq.nextVal,
+		#{u_id},
+		#{uPw},
+		#{uName},
+		#{uEmail},
+		sysdate
+		)
+	</insert>
+	<select id="do_login" parameterType="org.joonzis.vo.UVO"
+	 resultType="org.joonzis.vo.UVO">
+	 SELECT * FROM user_t WHERE U_ID=#{u_id} and UPW=#{uPw}
+	 </select>
+	
+</mapper>
+
+
+
+

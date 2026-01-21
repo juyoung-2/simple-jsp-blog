@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.joonzis.mybatis.mapper.comm"> 
+	<!-- 1. 댓글 사용 -->
+	<insert id="insert_comm" parameterType="org.joonzis.vo.CVO">
+		INSERT INTO COMM_T VALUES(
+		comm_seq.nextVal,
+		#{writer},
+		#{content},
+		sysdate,
+		#{m_idx}
+		)
+	</insert>
+	
+	<!-- 2. 게시글로 검색 -->
+	<select id="comm_select_by_midx" parameterType="int" resultType="org.joonzis.vo.CVO">
+		SELECT * FROM comm_t WHERE m_idx=#{m_idx}
+	</select>
+	
+	<!-- 3. 댓글 삭제 -->
+	<delete id="delete_comm" parameterType="int">
+		DELETE FROM comm_t WHERE c_idx = #{c_idx}
+	</delete>
+	
+	<!--  댓글 수정 -->
+	<update id="update_comm" parameterType="org.joonzis.vo.CVO">
+		UPDATE comm_t
+		SET content = #{content}
+		WHERE c_idx = #{c_idx}
+	</update>
+	
+</mapper>
+
+
+
+
+
+

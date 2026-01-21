@@ -1,0 +1,281 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* 게시글 컨테이너 */
+.post_container {
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 게시글 인덱스 */
+.post_idx {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+/* 게시글 제목 */
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 게시글 작성자 및 날짜 */
+.post_info {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* 게시글 내용 */
+.post_content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* 이미지 출력 스타일 */
+.post_content img {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+/* 버튼 영역 */
+.post_buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    
+}
+#homeBtn {
+    background-color: #e0e0e0; 
+    color: #555;    
+}
+
+#homeBtn:hover {
+    background-color: #ccc; 
+}
+/* 수정, 삭제, 홈으로 버튼 */
+button {
+    background-color: #fdf19f;
+    color: #60646c;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #f8ce41;
+}
+
+/* 홈으로 버튼은 약간 다른 색상 */
+/*.post_buttons button:last-child {
+    background-color: #f8ce41;
+}
+*/
+/*.post_buttons button:last-child:hover {
+    background-color: #fdf19f;
+}
+*/
+
+/* =========================
+   댓글 입력 영역
+========================= */
+.comm_form {
+	width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 25px 30px;
+    background-color: #fafafa;
+    border-radius: 10px; 
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* 각 입력 줄 */
+.comm_row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* 라벨 */
+.comm_row label {
+    width: 90px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+}
+
+/* 작성자 input */
+.comm_row input[type="text"] {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.comm_row input[type="text"]:focus,
+.comm_row textarea:focus {
+    outline: none;
+    border-color: #f8ce41;
+}
+
+/* 댓글 textarea */
+.comm_row textarea {
+    flex: 1;
+    min-height: 90px;
+    resize: none;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* 버튼 영역 */
+.comm_buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* input 버튼 스타일 */
+.comm_buttons input[type="button"],
+.comm_buttons input[type="reset"] {
+    background-color: #fdf19f;
+    color: #60646c;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.comm_buttons input[type="button"]:hover {
+    background-color: #f8ce41;
+}
+
+.comm_buttons input[type="reset"] {
+    background-color: #e0e0e0;
+}
+
+.comm_buttons input[type="reset"]:hover {
+    background-color: #ccc;
+}
+#download {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #fdf19f;
+    color: #555;
+    border-radius: 4px;
+    font-size: 0;
+    text-decoration: none;
+    transition: 0.2s;
+}
+#download::before {
+    content: "📎 첨부파일";
+    font-size: 13px;
+}
+
+#downlaod:hover {
+    background-color: #f8ce41;
+    color: #333;
+}
+/* =========================
+   댓글 출력 영역
+========================= */
+.comm_list {
+    width: 85%;
+    max-width: 900px;
+    margin: 12px auto;
+    padding: 6px 8px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* 상단 (작성자 + 날짜) */
+.comm_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.comm_writer {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.comm_date {
+    font-size: 12px;
+    color: #999;
+}
+
+/* 댓글 내용 */
+.comm_content {
+    font-size: 14px;
+    line-height: 1.0;
+    color: #444;
+    margin-bottom: 8px;
+    white-space: pre-line;
+}
+
+/* 하단 버튼 영역 */
+.comm_actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+edit-buttons{
+    display: flex;       /* 버튼을 가로로 나란히 */
+    gap: 5px;            /* 버튼 사이 간격 */
+    margin-top: 5px;     /* input과 버튼 사이 간격 */
+}
+
+.edit-buttons button {
+    flex: 1;             /* 버튼 크기 동일하게 */
+}
+.btn-end{
+	background-color: #fdf19f !important;
+}
+.btn-end:hover{
+	background-color:#f8ce41 !important;
+}
+/* 삭제 버튼 */
+.comm_actions button {
+    background-color: #e0e0e0;
+    color: #555;
+    border: none;
+    margin-right: 10px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.comm_actions button:hover {
+    background-color: #ccc;
+}

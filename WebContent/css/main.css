@@ -1,0 +1,203 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+.layout {
+	display: flex;
+	align-items: flex-start;   /* 위쪽 기준 정렬 */
+}
+.login-info {
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+/* 왼쪽 메뉴 */
+.side-menu {
+	width: 180px;
+	padding: 20px;
+}
+
+/* 오른쪽 글 영역 */
+.content-area {
+	flex: 1;                  /* 나머지 영역 다 차지 */
+	padding: 20px;
+}
+#but{
+	background-color: #e6f2fd; 
+}
+#but:hover{
+	background-color:#c4e2fb;
+}
+
+/* 글쓰기 버튼 스타일 */
+button {
+    background-color:#fdf19f;
+    color:#60646c;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color:#f8ce41;
+}
+.top-right-auth {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+
+	display: flex;
+	gap: 10px;   /* 버튼 사이 간격 */
+}
+.btn-group {
+	text-align: left;
+}
+
+.btn-group button {
+	margin-bottom: 15px; /* 버튼 사이 간격 */
+}
+.btn-top{
+	position: absolute;
+	top: 20px;
+	right: 30px;
+
+	display: flex;
+	gap: 10px; 
+}
+/* 페이지 제목 */
+h1 {
+    text-align: center;
+    font-size: 36px;
+    margin: 20px 0;
+    color: #333;
+}
+.post_box {
+    width: 80%;
+   max-width: 800px;
+    margin: 0 auto 50px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer; /* 클릭 가능한 느낌 */
+}
+
+.post_link {
+    text-decoration: none; /* 기본 링크 스타일 제거 */
+    color: inherit; /* 부모 색상 상속 */
+    display: block; /* 링크를 블록처럼 처리하여 전체 영역 클릭 가능 */
+}
+
+/* 게시물 리스트 영역 */
+/*.post_list {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+}
+*?
+/* 게시물 하나 */
+.post {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: 0.2s;
+}
+
+.post:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* 게시물 제목 */
+.post_title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* 게시물 정보 (작성자, 날짜, idx) */
+.post_etc {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.post_etc span {
+    margin-right: 10px;
+}
+
+/* 게시물 내용 */
+.post_content {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+/* 일부 내용만 보여주기 */
+.content-summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 표시할 줄 수 (여기서는 3줄) */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* ...으로 생략 */
+}
+/* 메인 글 목록 안 이미지 미리보기 */
+.post_content img {
+    max-width: 150px;   /* 미리보기 크기 */
+    max-height: 150px;
+    object-fit: cover;  /* 비율 유지하면서 자르기 */
+    display: block;
+    margin-top: 5px;
+}
+/* 게시글 전체를 flex로 */
+.post {
+	display: flex;
+	flex-direction: column;
+}
+
+/* 제목, 정보는 위 */
+.post_title,
+.post_etc {
+	flex: 0 0 auto;
+}
+
+/* 내용 + 이미지 영역 */
+.post_content {
+	display: flex;
+	gap: 15px;
+}
+
+/* 텍스트 영역 */
+.post_content p {
+	flex: 1; /* 남은 공간 다 차지 */
+	margin: 0;
+}
+
+/* 이미지 미리보기 */
+.post_content img {
+	width: 120px;
+	height: 120px;
+	object-fit: cover;
+	flex-shrink: 0;   /* 이미지 줄어들지 않게 */
+}
+/* 조회수 */
+.hit {
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+}
+
+/* 게시물이 없는 경우 */
+.no-post {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    margin-top: 50px;
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.joonzis.mybatis.mapper.main">
+	<select id="main_select_all_with_paging" resultType="org.joonzis.vo.MVO">
+	<![CDATA[
+      select m_idx, writer, title, content, hit, filename, reg_date
+      from
+      (select rownum rn, a.*
+      from 
+      (select m_idx, writer, title, content, hit, filename, reg_date
+      from main_t
+      ORDER BY m_idx desc) a
+      where rownum <= #{pageNum} * #{amount})
+      where rn > (#{pageNum}-1) * #{amount}
+      ]]>
+	</select>
+	<select id="total_count_of_main" resultType="int" >
+		select count(*) from main_t
+	</select>
+	<insert id="insert_main" parameterType="org.joonzis.vo.MVO">
+		INSERT INTO main_t VALUES (
+	 	main_seq.nextVal,
+	 	#{writer},
+	 	#{title},
+	 	#{content},
+	 	0,
+	 	#{filename},
+	 	sysdate
+	 )
+	</insert>
+	<select id="get_main" parameterType="int" resultType="org.joonzis.vo.MVO">
+		SELECT * FROM main_t WHERE m_idx = #{m_idx}
+	</select>
+	<!-- 조회수 증가 -->
+	<update id="update_hit" parameterType="org.joonzis.vo.MVO">
+		UPDATE main_t
+		SET
+		    hit = #{hit}
+		WHERE 
+			m_idx = #{m_idx}
+	</update>
+	<!-- 게시글 삭제 -->
+	<delete id="delete_main" parameterType="int">
+		DELETE FROM main_t WHERE m_idx = #{m_idx}
+	</delete>
+	
+	<update id="update_main" parameterType="org.joonzis.vo.MVO">
+		UPDATE main_t
+       	SET 
+       		title = #{title}, 
+       		content = #{content},
+       		filename = #{filename}
+    	WHERE 
+    		m_idx = #{m_idx}
+	</update>
+	<!-- 내가 쓴 글 목록 가져오기 -->
+	<select id="select_my_post_list" parameterType="String" resultType="org.joonzis.vo.MVO">
+		SELECT * FROM main_t WHERE writer= #{u_id}
+		ORDER BY m_idx DESC
+	</select>
+</mapper>
+
+
+
+
+
+

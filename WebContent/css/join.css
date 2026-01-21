@@ -1,0 +1,136 @@
+/* 전체 배경 */
+.bg-light {
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    padding: 50px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 컨테이너 중앙 정렬 */
+.container {
+    width: 500px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 제목 */
+.container h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    color: #333;
+}
+
+/* 폼 그룹 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* 레이블 */
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+/* 입력 필드 */
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* 아이디 + 중복확인 버튼 */
+.form-group button {
+    padding: 8px 12px;
+    background-color: #e0e0e0; /* login.css 기준 보조 버튼 색 */
+    color: #555;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: 0.2s;
+}
+
+.form-group button:hover {
+    background-color: #ccc;
+}
+.input-group {
+    display: flex;
+    gap: 10px; /* input과 버튼 사이 간격 */
+}
+
+.input-group input {
+    flex: 1; /* input이 남는 공간 다 차지 */
+}
+
+.input-group button {
+    padding: 8px 12px;
+    background-color: #e0e0e0; /* 기존 join.css 버튼 색상 */
+    color: #555;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.input-group button:hover {
+    background-color: #ccc;
+}
+
+/* 에러 메시지 */
+.invalid-feedback {
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* 버튼 그룹 */
+.btn-div {
+    text-align: center;
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+}
+
+/* 주요 버튼 (회원가입 버튼) */
+#resetBtn, #joinBtn {
+    flex: 1;
+    background-color: #fdf19f; /* login.css 기준 주요 버튼 색 */
+    border: none;
+    color: #60646c;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#resetBtn:hover, #joinBtn:hover {
+    background-color: #f8ce41;
+}
+
+/* 보조 버튼 (다시작성, 목록 버튼) */
+#mainBtn {
+    flex: 1;
+    background-color: #e0e0e0; /* login.css 기준 보조 버튼 색 */
+    border: none;
+    color: #555;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#mainBtn:hover {
+    background-color: #ccc;
+}
