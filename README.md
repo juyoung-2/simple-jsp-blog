@@ -6,8 +6,7 @@
 비동기 통신(fetch)을 적극적으로 활용한 구조입니다.
 
 Controller 중심의 MVC 패턴을 기반으로  
-View(JSP), Controller(Servlet), Model(DAO / VO / MyBatis)을 분리하여 설계되었습니다.
-
+View(JSP), Controller(Servlet), Model(DAO / VO / MyBatis)을 분리하여 설계되었습니다.  
 
 
 
