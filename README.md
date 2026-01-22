@@ -23,67 +23,133 @@ View(JSP), Controller(Servlet), Model(DAO / VO / MyBatis)을 분리하여 설계
 ## 2. MVC 아키텍처
 
 ### ASCII 다이어그램
-```text
-            +--------+
-            |  User  |
-            +--------+
-                 |
-                 v
-            +--------------+
-            |     JSP      |
-            | (View Layer) |
-            +--------------+
-                 |
-        fetch / form submit
-                 |
-                 v
-        +----------------------+
-        |     Controller       |
-        |  (Servlet Layer)     |
-        |                      |
-        | MainController       |
-        | CommController       |
-        | UserController       |
-        | UserAsyncController  |
-        +----------------------+
-                 |
-                 v
-        +----------------------+
-        |       Model          |
-        |  DAO / VO / MyBatis  |
-        |                      |
-        | CDao / CVO           |
-        | DBService            |
-        +----------------------+
-                 |
-                 v
-            +-----------+
-            | Database  |
-            +-----------+
- ```
+```
+┌──────────┐
+│  User    │
+│ (Browser)│
+└────┬─────┘
+     │  HTTP Request (GET / POST)
+     ▼
+┌───────────────────┐
+│        JSP        │
+│   View Layer      │
+│                   │
+│ index.jsp         │
+│ list.jsp          │
+│ view.jsp          │
+│ write.jsp         │
+│ login_page.jsp    │
+│ join_page.jsp     │
+│ my_page.jsp       │
+└────┬──────────────┘
+     │ form submit / ajax(fetch)
+     ▼
+┌──────────────────────────────────┐
+│          Controller              │
+│        (Servlet Layer)           │
+│                                  │
+│ MainController                   │
+│ CommController                   │
+│ UserController                   │
+│ UserAsyncController              │
+│ ImageUploadController            │
+└────┬─────────────────────────────┘
+     │ service / dao 호출
+     ▼
+┌──────────────────────────────────┐
+│             Model                │
+│                                  │
+│ DAO                              │
+│  - CDao / CDaoImpl               │
+│  - MDao / MDaoImpl               │
+│  - UDao / UDaoImpl               │
+│                                  │
+│ VO                               │
+│  - CVO                           │
+│  - MVO                           │
+│  - UVO                           │
+│                                  │
+│ Util / Model                     │
+│  - PageDTO                       │
+│  - Criteria                      │
+│  - FileDownload                  │
+│                                  │
+│ DBService                        │
+│ (SqlSessionFactory Singleton)    │
+└────┬─────────────────────────────┘
+     │ MyBatis SQL Mapping
+     ▼
+┌──────────────────────────────────┐
+│           MyBatis                │
+│                                  │
+│ comm.xml                         │
+│ main.xml                         │
+│ user.xml                         │
+└────┬─────────────────────────────┘
+     │ JDBC
+     ▼
+┌───────────────┐
+│   Database    │
+│               │
+│ main_t        │
+│ comm_t        │
+│ user_t        │
+└───────────────┘
+```
 
 ## 3. 프로젝트 패키지 구조
 
 ``` text
-코드 복사
 org.joonzis
- ├── controller
- │   ├── MainController.java
- │   ├── CommController.java
- │   ├── UserController.java
- │   ├── UserAsyncController.java
- │   └── ImageUploadController.java
- │
- ├── dao
- │   └── CDao.java
- │
- ├── vo
- │   └── CVO.java
- │
- └── mybatis
-     └── config
-         ├── DBService.java
-         └── sqlmap.xml
+├─ controller
+│  ├─ MainController.java
+│  ├─ CommController.java
+│  ├─ UserController.java
+│  ├─ UserAsyncController.java
+│  └─ ImageUploadController.java
+│
+├─ dao
+│  ├─ CDao.java
+│  ├─ CDaoImpl.java
+│  ├─ MDao.java
+│  ├─ MDaoImpl.java
+│  ├─ UDao.java
+│  └─ UDaoImpl.java
+│
+├─ model
+│  ├─ Criteria.java
+│  ├─ PageDTO.java
+│  └─ FileDownload.java
+│
+├─ mybatis
+│  ├─ config
+│  │  └─ DBService.java
+│  │
+│  └─ mapper
+│     ├─ comm.xml
+│     ├─ main.xml
+│     └─ user.xml
+│
+├─ vo
+│  ├─ CVO.java
+│  ├─ MVO.java
+│  └─ UVO.java
+│
+└─ webapp
+   ├─ index.jsp
+   ├─ project
+   │  ├─ list.jsp
+   │  ├─ view.jsp
+   │  ├─ write.jsp
+   │  ├─ login_page.jsp
+   │  ├─ join_page.jsp
+   │  └─ my_page.jsp
+   │
+   └─ js
+      ├─ comment.js
+      ├─ main.js
+      ├─ login.js
+      └─ user_join.js
 ```
 
 ## 4. 댓글 기능 구조
@@ -139,6 +205,19 @@ SqlSession
 - JSON 형태로 서버 전송
 
 - 성공 시 메인 페이지 이동
+```
+join.jsp
+ ↓
+user_join.js
+ ↓
+UserController
+ ↓
+UDao (MyBatis)
+ ↓
+user_t
+ ↓
+JSON 응답
+```
 
 ### 6.2) 로그인
 - JSON 기반 로그인 요청
@@ -171,20 +250,26 @@ SqlSession
 - 8.1 파일 다운로드
 ```
 a 태그 클릭 이벤트 가로채기
-            ↓
+        ↓
 서블릿으로 파일명 전달
-            ↓
+        ↓
+FileDownload
+        ↓
 실제 경로의 파일 다운로드 처리
 ```
 <br>
 
 - 8.2 이미지 업로드
 ```
-FormData 기반 이미지 업로드
-            ↓
-업로드 완료 후 이미지 경로 반환
-            ↓
-게시글 내용에 img 태그 자동 삽입
+FormData 생성
+ ↓
+ImageUploadController
+ ↓
+서버 저장
+ ↓
+이미지 경로 반환
+ ↓
+게시글 내용에 img 태그 삽입
 ```
 ## 9. JavaScript 구조 요약
 ```text
